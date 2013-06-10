@@ -1,1 +1,38 @@
-     create view yieldsview as select yields.id as yield_id, yields.citation_id, yields.site_id, sites.sitename as site, sites.lat as lat, sites.lon as lon, species.scientificname as sp, citations.author as author, citations.year as cityear, treatments.name as trt, date, month(date) as month, year(date) as year, mean, n, statname, stat, yields.notes, users.name as user, yields.checked as checked, yields.access_level as access_level, yields.user_id as user_id from yields join sites on yields.site_id = sites.id join species on yields.specie_id = species.id join citations on yields.citation_id = citations.id join treatments on yields.treatment_id = treatments.id join users on yields.user_id = users.id;
+
+
+CREATE VIEW yieldsview AS
+       SELECT
+              yields.id AS yield_id,
+              yields.citation_id,
+              yields.site_id,
+              
+              sites.sitename AS site,
+              sites.lat AS lat,
+              sites.lon AS lon,
+              species.scientificname AS sp,
+
+              
+              citations.author AS author,
+              citations.year AS cityear,
+              treatments.name AS trt,
+              date,
+              month(date) AS month,
+              year(date) AS year,
+
+
+              mean,
+              n,
+              statname,
+              stat,
+              yields.notes,
+              users.name AS user,
+              yields.checked AS checked,
+              yields.access_level AS access_level,
+              yields.user_id AS user_id
+       FROM
+                   yields
+              JOIN sites ON yields.site_id = sites.id
+              JOIN species ON yields.specie_id = species.id
+              JOIN citations ON yields.citation_id = citations.id
+              JOIN treatments ON yields.treatment_id = treatments.id
+              JOIN users on yields.user_id = users.id;
