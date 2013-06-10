@@ -1,8 +1,4 @@
-CREATE 
-    ALGORITHM = UNDEFINED 
-    DEFINER = `DLEBAUER`@`LOCALHOST` 
-    SQL SECURITY DEFINER
-VIEW `seeding` AS
+CREATE VIEW `seeding` AS
     SELECT 
         `mt`.`treatment_id` AS `treatment_id`,
         `mt`.`management_id` AS `management_id`,
