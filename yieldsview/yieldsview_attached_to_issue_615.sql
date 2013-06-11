@@ -6,26 +6,28 @@ CREATE VIEW yieldsview AS
               yields.citation_id,
               yields.site_id,
               yields.treatment_id,
-              sites.sitename AS site,
-              sites.city,
+              COALESCE(sites.sitename, sites.city) AS sitename_or_city,
               sites.lat,
               sites.lon,
               species.scientificname,
+              species.commonname,
               species.genus,
               citations.author AS author,
               citations.year AS cityear,
-              treatments.name AS trt,
-              date,
-              month(date) AS month,
-              year(date) AS year,
-              mean,
-              n,
-              statname,
-              stat,
+              treatments.name AS treatment,
+              yields.date,
+              month(yields.date) AS month,
+              year(yields.date) AS year,
+
+
+              yields.mean,
+              yields.n,
+              yields.statname,
+              yields.stat,
               yields.notes,
-              users.name AS user,
-              planting,
-              seeding
+              users.name AS user_name,
+              mgmtview.planting,
+              mgmtview.seeding
        FROM
                    yields
               JOIN sites ON yields.site_id = sites.id
