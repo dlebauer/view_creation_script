@@ -1,42 +1,44 @@
 DROP VIEW IF EXISTS seeding;
 CREATE VIEW seeding AS
        SELECT
-              treatment_id,
-              -- management_id,
-              mgmttype,
-              date,
-              level,
-              units
+              mt.treatment_id,
+              -- m.id AS management_id,
+              -- m.mgmttype,
+              m.date,
+              -- m.level,
+              m.units
        FROM
                    managements AS m
               JOIN managements_treatments AS mt ON m.id = mt.management_id
-       WHERE mgmttype IN ('seeding', 'seed_density', 'row_spacing');
+       WHERE m.mgmttype IN ('seeding', 'seed_density', 'row_spacing');
                      
 DROP VIEW IF EXISTS coppice;
 CREATE VIEW coppice AS
-       SELECT treatment_id,
-              management_id,
-              mgmttype,
-              date,
-              level,
-              units
+       SELECT
+              mt.treatment_id,
+              -- m.id AS management_id,
+              -- m.mgmttype,
+              m.date,
+              -- m.level,
+              m.units
        FROM
                    managements AS m
               JOIN managements_treatments AS mt ON m.id = mt.management_id
-       WHERE mgmttype IN ('coppice');
+       WHERE m.mgmttype IN ('coppice');
 
 DROP VIEW IF EXISTS planting;
 CREATE VIEW planting AS
-       SELECT treatment_id,
-              management_id,
-              mgmttype,
-              date,
-              level,
-              units
+       SELECT 
+              mt.treatment_id,
+              -- m.id AS management_id,
+              -- m.mgmttype,
+              m.date,
+              -- m.level,
+              m.units
        FROM
               managements AS m
               JOIN managements_treatments AS mt ON m.id = mt.management_id
-       WHERE mgmttype in ('planting');
+       WHERE m.mgmttype in ('planting');
 
 DROP VIEW IF EXISTS mgmtview;  
 CREATE VIEW mgmtview AS
