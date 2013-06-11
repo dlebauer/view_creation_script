@@ -2,7 +2,7 @@ DROP VIEW IF EXISTS seeding;
 CREATE VIEW seeding AS
        SELECT
               treatment_id,
-              management_id,
+              -- management_id,
               mgmttype,
               date,
               level,
