@@ -20,14 +20,14 @@ CREATE VIEW yieldsview AS
               year(yields.date) AS year,
 
 
-              yields.mean,
+              CONCAT(yields.mean, ' ', mgmtview.units) AS mean,
               yields.n,
               yields.statname,
               yields.stat,
               yields.notes,
-              users.name AS user_name,
-              mgmtview.planting,
-              mgmtview.seeding
+              users.name AS user_name
+              -- mgmtview.planting,
+              -- mgmtview.seeding
        FROM
                    yields
               JOIN sites ON yields.site_id = sites.id

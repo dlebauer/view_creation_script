@@ -20,7 +20,7 @@ CREATE VIEW traitsview AS
               year(traits.date) AS year,
               traits.dateloc,
               variables.name AS trait,
-              traits.mean,
+              CONCAT(traits.mean, ' ', variables.units) AS mean,
               traits.n,
               traits.statname,
               traits.stat,
