@@ -2,7 +2,8 @@ DROP VIEW IF EXISTS yieldsview;
 
 CREATE VIEW yieldsview AS
        SELECT
-              yields.id AS yield_id,
+              'yield data' AS result_type,
+              yields.id AS id,
               yields.citation_id,
               yields.site_id,
               yields.treatment_id,
@@ -13,14 +14,14 @@ CREATE VIEW yieldsview AS
               species.commonname,
               species.genus,
               citations.author AS author,
-              citations.year AS cityear,
+              citations.year AS citation_year,
               treatments.name AS treatment,
               yields.date,
               month(yields.date) AS month,
               year(yields.date) AS year,
-
-
-              CONCAT(yields.mean, ' ', mgmtview.units) AS mean,
+              yields.dateloc,
+              variables.name AS trait,
+              CONCAT(yields.mean, ' ', variables.units) AS mean,
               yields.n,
               yields.statname,
               yields.stat,
@@ -35,4 +36,12 @@ CREATE VIEW yieldsview AS
               JOIN citations ON yields.citation_id = citations.id
               JOIN treatments ON yields.treatment_id = treatments.id
               JOIN users ON yields.user_id = users.id
-              JOIN mgmtview ON yields.id = mgmtview.yield_id;
+              JOIN mgmtview ON yields.id = mgmtview.yield_id
+              JOIN variables ON variables.name = 'Ayield' AND variables.id = 63;
+
+DROP VIEW IF EXISTS traits_and_yields_view;
+
+CREATE VIEW traits_and_yields_view AS
+       SELECT * FROM traitsview
+           UNION
+       SELECT * FROM yieldsview;

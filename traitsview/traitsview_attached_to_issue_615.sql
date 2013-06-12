@@ -2,10 +2,11 @@ DROP VIEW IF EXISTS traitsview;
 
 CREATE VIEW traitsview AS
        SELECT
-              -- traits.id AS trait_id,
-              -- traits.citation_id,
-              -- traits.site_id,
-              -- traits.treatment_id,
+              'trait data' AS result_type,
+              traits.id AS id,
+              traits.citation_id,
+              traits.site_id,
+              traits.treatment_id,
               COALESCE(sites.sitename, sites.city) AS sitename_or_city,
               sites.lat,
               sites.lon,
