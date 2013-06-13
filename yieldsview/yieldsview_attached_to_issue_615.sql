@@ -8,8 +8,8 @@ CREATE VIEW yieldsview AS
               yields.site_id,
               yields.treatment_id,
               COALESCE(sites.sitename, sites.city) AS sitename_or_city,
-              sites.lat,
-              sites.lon,
+              ROUND(sites.lat, 2) AS lat,
+              ROUND(sites.lon, 2) AS lon,
               species.scientificname,
               species.commonname,
               species.genus,
@@ -31,13 +31,13 @@ CREATE VIEW yieldsview AS
               -- mgmtview.seeding
        FROM
                    yields
-              JOIN sites ON yields.site_id = sites.id
-              JOIN species ON yields.specie_id = species.id
-              JOIN citations ON yields.citation_id = citations.id
-              JOIN treatments ON yields.treatment_id = treatments.id
-              JOIN users ON yields.user_id = users.id
-              JOIN mgmtview ON yields.id = mgmtview.yield_id
-              JOIN variables ON variables.name = 'Ayield' AND variables.id = 63;
+              LEFT JOIN sites ON yields.site_id = sites.id
+              LEFT JOIN species ON yields.specie_id = species.id
+              LEFT JOIN citations ON yields.citation_id = citations.id
+              LEFT JOIN treatments ON yields.treatment_id = treatments.id
+              LEFT JOIN variables ON variables.name = 'Ayield' AND variables.id = 63
+              LEFT JOIN users ON yields.user_id = users.id
+              ; -- LEFT JOIN mgmtview ON yields.id = mgmtview.yield_id;
 
 DROP VIEW IF EXISTS traits_and_yields_view;
 

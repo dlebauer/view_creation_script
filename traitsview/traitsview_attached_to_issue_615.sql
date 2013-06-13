@@ -8,8 +8,8 @@ CREATE VIEW traitsview AS
               traits.site_id,
               traits.treatment_id,
               COALESCE(sites.sitename, sites.city) AS sitename_or_city,
-              sites.lat,
-              sites.lon,
+              ROUND(sites.lat, 2) AS lat,
+              ROUND(sites.lon, 2) AS lon,
               species.scientificname,
               species.commonname,
               species.genus,
@@ -27,11 +27,13 @@ CREATE VIEW traitsview AS
               traits.stat,
               traits.notes,
               users.name AS user_name
+
+              
        FROM
                  traits
-            JOIN sites ON traits.site_id = sites.id
-            JOIN species ON traits.specie_id = species.id
-            JOIN citations ON traits.citation_id = citations.id
-            JOIN treatments ON traits.treatment_id = treatments.id
-            JOIN variables ON traits.variable_id = variables.id
-            JOIN users ON traits.user_id = users.id;
+            LEFT JOIN sites ON traits.site_id = sites.id
+            LEFT JOIN species ON traits.specie_id = species.id
+            LEFT JOIN citations ON traits.citation_id = citations.id
+            LEFT JOIN treatments ON traits.treatment_id = treatments.id
+            LEFT JOIN variables ON traits.variable_id = variables.id
+            LEFT JOIN users ON traits.user_id = users.id;
