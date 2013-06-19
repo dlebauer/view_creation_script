@@ -56,7 +56,7 @@ CREATE VIEW mgmtview AS
               LEFT OUTER JOIN seeding ON yields.treatment_id = seeding.treatment_id
               LEFT OUTER JOIN coppice ON yields.treatment_id = coppice.treatment_id; 
 */
-
+/*
 CREATE VIEW mgmtview AS
        SELECT
             yields.id AS yield_id,
@@ -66,4 +66,4 @@ CREATE VIEW mgmtview AS
                  managements AS m
                  JOIN managements_treatments AS mt ON m.id = mt.management_id)
             ON yields.treatment_id = mt.treatment_id;
-       
+*/
