@@ -7,7 +7,8 @@ CREATE VIEW yieldsview AS
               yields.citation_id,
               yields.site_id,
               yields.treatment_id,
-              COALESCE(sites.sitename, sites.city) AS sitename_or_city,
+              sites.sitename,
+              sites.city,
               sites.lat,
               sites.lon,
               species.scientificname,
@@ -21,7 +22,8 @@ CREATE VIEW yieldsview AS
               year(yields.date) AS year,
               yields.dateloc,
               variables.name AS trait,
-              CONCAT(yields.mean, ' ', variables.units) AS mean,
+              yields.mean,
+              variables.units,
               yields.n,
               yields.statname,
               yields.stat,
@@ -43,5 +45,5 @@ DROP VIEW IF EXISTS traits_and_yields_view;
 
 CREATE VIEW traits_and_yields_view AS
        SELECT * FROM traitsview
-           UNION
+           UNION ALL /* UNION ALL more efficient than UNION and in this case should give the same result */
        SELECT * FROM yieldsview;
