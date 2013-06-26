@@ -3,6 +3,10 @@ view_creation_script
 
 According to [this post on StackOverflow](http://stackoverflow.com/questions/11666736/rails-3-2-6-database-views-creation-through-migrations), these views can be added to the mgrations as
 
+This first approach is implemented here: https://github.com/PecanProject/bety/pull/11
+
+At first glance, these appear compatable with Postgres and MySQL. I will test this out on Thursday.
+
 ```{ruby}
 class CreateMyView < ActiveRecord::Migration
   def self.up
@@ -18,7 +22,7 @@ class CreateMyView < ActiveRecord::Migration
 end
 ```
 
-A more advanced option is [rails_sql_views gem](http://activewarehouse.rubyforge.org/rails_sql_views/). It is (apparently) compatable with MySQL and PostgreSQL. The code goes something like:
+A more advanced (or ruby-based) option is [rails_sql_views gem](http://activewarehouse.rubyforge.org/rails_sql_views/). It is (apparently) compatable with MySQL and PostgreSQL. The code goes something like:
 
 ```{ruby}
   class CreatePersonView < ActiveRecord::Migration
