@@ -2,7 +2,7 @@ DROP VIEW IF EXISTS yieldsview;
 
 CREATE VIEW yieldsview AS
        SELECT
-              'yield data' AS result_type,
+              'yields' AS result_type,
               yields.id AS id,
               yields.citation_id,
               yields.site_id,

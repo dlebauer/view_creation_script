@@ -2,7 +2,7 @@ DROP VIEW IF EXISTS traitsview;
 
 CREATE VIEW traitsview AS
        SELECT
-              'trait data' AS result_type,
+              'traits' AS result_type,
               traits.id AS id,
               traits.citation_id,
               traits.site_id,
